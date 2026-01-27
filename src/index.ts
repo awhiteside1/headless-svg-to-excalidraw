@@ -1,3 +1,3 @@
-import * as parser from "./parser";
+import {convert} from "./parser";
 
-export default parser;
+export { convert };
