@@ -10,8 +10,9 @@
     "strict": true,
     "esModuleInterop": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {},
+    "isolatedDeclarations": true
   },
-  "include": ["src", "svg-to-excalidraw.d.ts"],
+  "include": ["src", "svg-to-excalidraw.d.ts", "tsdown.config.ts"],
   "exclude": ["src/test"]
 }
