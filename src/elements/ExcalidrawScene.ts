@@ -1,21 +1,28 @@
-import type { ExcalidrawGenericElement } from "./ExcalidrawElement";
+import type { ExcalidrawGenericElement } from './ExcalidrawElement'
 
 class ExcalidrawScene {
-  type = "excalidraw";
-  version = 2;
-  source = "https://excalidraw.com";
-  elements: ExcalidrawGenericElement[] = [];
+	type = 'excalidraw'
+	version = 2
+	source = 'https://excalidraw.com'
+	elements: ExcalidrawGenericElement[] = []
 
-  constructor(elements: ExcalidrawGenericElement[] = []) {
-    this.elements = elements;
-  }
+	constructor(elements: ExcalidrawGenericElement[] = []) {
+		this.elements = elements
+	}
 
-  toExJSON(): any {
-    return {
-      ...this,
-      elements: this.elements.map((el) => ({ ...el })),
-    };
-  }
+	toExJSON(): {
+		type: string
+		version: number
+		source: string
+		elements: ExcalidrawGenericElement[]
+	} {
+		return {
+			type: this.type,
+			version: this.version,
+			source: this.source,
+			elements: this.elements.map((el) => ({ ...el })),
+		}
+	}
 }
 
-export default ExcalidrawScene;
+export default ExcalidrawScene
