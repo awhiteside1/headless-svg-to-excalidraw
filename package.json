@@ -1,12 +1,12 @@
 {
 	"name": "headless-svg-to-excalidraw",
-  "version": "0.0.10",
+	"version": "0.0.11",
 	"description": "Convert SVG to Excalidraw's file format, no browser required.",
 	"type": "module",
 	"publishConfig": {
 		"access": "public"
 	},
-  "repository": "github:awhiteside1/headless-svg-to-excalidraw",
+	"repository": "github:awhiteside1/headless-svg-to-excalidraw",
 	"bugs": {
 		"url": "https://github.com/awhiteside1/headless-svg-to-excalidraw/issues"
 	},
