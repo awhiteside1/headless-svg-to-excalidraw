@@ -6,10 +6,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/awhiteside1/headless-svg-to-excalidraw.git"
-  },
+  "repository": "github:awhiteside1/headless-svg-to-excalidraw",
   "bugs": {
     "url": "https://github.com/awhiteside1/headless-svg-to-excalidraw/issues"
   },
