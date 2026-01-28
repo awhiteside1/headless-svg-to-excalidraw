@@ -1,6 +1,6 @@
 import { presAttrsToElementValues } from '../attributes.ts'
-import type { ExcalidrawElementBase } from './ExcalidrawElement.ts'
 import { randomId } from '../utils.ts'
+import type { ExcalidrawElementBase } from './ExcalidrawElement.ts'
 
 export function getGroupAttrs(groups: Group[]): Partial<ExcalidrawElementBase> {
 	return groups.reduce(

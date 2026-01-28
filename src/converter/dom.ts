@@ -3,7 +3,7 @@
  * Works in browser, Node.js, and serverless/edge environments
  */
 
-import { DOMParser as LinkedDOMParser, parseHTML } from 'linkedom'
+import { DOMParser as LinkedDOMParser, parseHTML } from 'linkedom/worker'
 
 // Initialize linkedom DOM
 const dom = parseHTML('<!DOCTYPE html>')
