@@ -14,6 +14,6 @@
     "isolatedDeclarations": true,
     "skipLibCheck": true
   },
-  "include": ["src", "svg-to-excalidraw.d.ts", "tsdown.config.ts"],
+  "include": ["src",  "tsdown.config.ts"],
   "exclude": ["src/test"]
 }
