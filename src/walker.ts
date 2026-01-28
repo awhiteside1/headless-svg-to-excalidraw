@@ -2,6 +2,7 @@ import { mat4 } from "gl-matrix";
 import { dimensionsFromPoints } from "./utils";
 import ExcalidrawScene from "./elements/ExcalidrawScene";
 import Group, { getGroupAttrs } from "./elements/Group";
+import { document, NodeFilter } from "./dom";
 import {
   ExcalidrawElementBase,
   ExcalidrawRectangle,
@@ -38,8 +39,14 @@ const SUPPORTED_TAGS = [
   "polygon",
 ];
 
-const nodeValidator = (node: Element): number => {
-  if (SUPPORTED_TAGS.includes(node.tagName)) {
+const nodeValidator = (node: Node): number => {
+  // Only accept Element nodes (nodeType 1), not text nodes, comments, etc.
+  if (node.nodeType !== 1) {
+    return NodeFilter.FILTER_REJECT;
+  }
+
+  const element = node as Element;
+  if (SUPPORTED_TAGS.includes(element.tagName.toLowerCase())) {
     return NodeFilter.FILTER_ACCEPT;
   }
 
@@ -47,9 +54,44 @@ const nodeValidator = (node: Element): number => {
 };
 
 export function createTreeWalker(dom: Node): TreeWalker {
-  return document.createTreeWalker(dom, NodeFilter.SHOW_ALL, {
+  // Use the document that owns this node to create the TreeWalker
+  const ownerDoc = dom.ownerDocument || (dom as Document);
+  return ownerDoc.createTreeWalker(dom, NodeFilter.SHOW_ELEMENT, {
     acceptNode: nodeValidator,
   });
+}
+
+/**
+ * Helper to simulate TreeWalker.nextSibling() for linkedom compatibility
+ * Linkedom's TreeWalker only implements nextNode(), not nextSibling()
+ */
+function getNextSibling(tw: TreeWalker, currentNode: Node): Node | null {
+  const startNode = currentNode;
+  let node = tw.nextNode();
+
+  // Skip all descendants of startNode to get to its sibling
+  while (node) {
+    // Check if node is a descendant of startNode
+    let parent = node.parentNode;
+    let isDescendant = false;
+
+    while (parent) {
+      if (parent === startNode) {
+        isDescendant = true;
+        break;
+      }
+      parent = parent.parentNode;
+    }
+
+    // If not a descendant, we've found the sibling or a node outside the subtree
+    if (!isDescendant) {
+      return node;
+    }
+
+    node = tw.nextNode();
+  }
+
+  return null;
 }
 
 type WalkerArgs = {
@@ -57,6 +99,7 @@ type WalkerArgs = {
   tw: TreeWalker;
   scene: ExcalidrawScene;
   groups: Group[];
+  skippedElements?: Set<string>;
 };
 
 const presAttrs = (
@@ -120,15 +163,17 @@ const walkers = {
   },
 
   g: (args: WalkerArgs) => {
+    const groupNode = args.tw.currentNode;
     const nextArgs = {
       ...args,
-      tw: createTreeWalker(args.tw.currentNode),
-      groups: [...args.groups, new Group(args.tw.currentNode as Element)],
+      tw: createTreeWalker(groupNode),
+      groups: [...args.groups, new Group(groupNode as Element)],
     };
 
     walk(nextArgs, nextArgs.tw.nextNode());
 
-    walk(args, args.tw.nextSibling());
+    // Use helper function for linkedom compatibility (no native nextSibling)
+    walk(args, getNextSibling(args.tw, groupNode));
   },
 
   use: (args: WalkerArgs) => {
@@ -455,8 +500,19 @@ export function walk(args: WalkerArgs, nextNode: Node | null): void {
     return;
   }
 
-  const nodeName = nextNode.nodeName as keyof typeof walkers;
+  const nodeName = nextNode.nodeName.toLowerCase() as keyof typeof walkers;
   if (walkers[nodeName]) {
     walkers[nodeName](args);
+  } else {
+    // Skip unsupported nodes and continue walking
+    // (linkedom doesn't support TreeWalker acceptNode filtering)
+
+    // Track skipped elements for debugging
+    if (args.skippedElements && nextNode.nodeType === 1) {
+      const element = nextNode as Element;
+      args.skippedElements.add(element.tagName.toLowerCase());
+    }
+
+    walk(args, args.tw.nextNode());
   }
 }
