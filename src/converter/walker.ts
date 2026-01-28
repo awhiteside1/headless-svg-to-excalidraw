@@ -7,8 +7,8 @@ import {
 	has,
 	pointsAttrToPoints,
 	presAttrsToElementValues,
-} from './attributes'
-import { NodeFilter } from './dom'
+} from './attributes.ts'
+import { NodeFilter } from './dom.ts'
 import {
 	createExDraw,
 	createExEllipse,
@@ -20,11 +20,11 @@ import {
 	type ExcalidrawLine,
 	type ExcalidrawRectangle,
 	type Point,
-} from './elements/ExcalidrawElement'
-import ExcalidrawScene from './elements/ExcalidrawScene'
-import Group, { getGroupAttrs } from './elements/Group'
-import { getTransformMatrix, transformPoints } from './transform'
-import { dimensionsFromPoints, getWindingOrder, randomId } from './utils'
+} from './elements/ExcalidrawElement.ts'
+import ExcalidrawScene from './elements/ExcalidrawScene.ts'
+import Group, { getGroupAttrs } from './elements/Group.ts'
+import { getTransformMatrix, transformPoints } from './transform.ts'
+import { dimensionsFromPoints, getWindingOrder, randomId } from './utils.ts'
 
 const SUPPORTED_TAGS = [
 	'svg',

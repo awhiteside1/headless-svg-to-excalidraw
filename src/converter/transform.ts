@@ -1,5 +1,5 @@
 import { mat4, vec3 } from 'gl-matrix'
-import type Group from './elements/Group'
+import type Group from './elements/Group.ts'
 
 /*
 SVG transform attr is a bit strange in that it can accept traditional

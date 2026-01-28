@@ -1,5 +1,5 @@
 import chroma from 'chroma-js'
-import type { ExcalidrawElementBase } from './elements/ExcalidrawElement'
+import type { ExcalidrawElementBase } from './elements/ExcalidrawElement.ts'
 
 export function hexWithAlpha(color: string, alpha: number): string {
 	return chroma(color).alpha(alpha).css()

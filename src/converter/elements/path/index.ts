@@ -1,6 +1,6 @@
-import type { RawElement } from '../../types'
-import { getElementBoundaries } from '../utils'
-import pathToPoints from './utils/path-to-points'
+import type { RawElement } from '../../types.ts'
+import { getElementBoundaries } from '../utils.ts'
+import pathToPoints from './utils/path-to-points.ts'
 
 const parse = (node: Element) => {
 	const data = node.getAttribute('d')

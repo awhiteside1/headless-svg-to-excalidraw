@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
-import { Random } from 'roughjs/bin/math'
-import type { Point } from './elements/ExcalidrawElement'
+import { Random } from 'roughjs/bin/math.js'
+import type { Point } from './elements/ExcalidrawElement.ts'
 
 const random = new Random(Date.now())
 

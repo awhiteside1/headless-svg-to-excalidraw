@@ -1,4 +1,4 @@
-import type { ExcalidrawGenericElement } from './ExcalidrawElement'
+import type { ExcalidrawGenericElement } from './ExcalidrawElement.ts'
 
 class ExcalidrawScene {
 	type = 'excalidraw'

@@ -1,7 +1,7 @@
-import type { PathCommand } from '../../../types'
-import { safeNumber } from '../../../utils'
-import { curveToPoints } from './bezier'
-import { findArc, getEllipsePoints, getEllipsesCenter } from './ellipse'
+import type { PathCommand } from '../../../types.ts'
+import { safeNumber } from '../../../utils.ts'
+import { curveToPoints } from './bezier.ts'
+import { findArc, getEllipsePoints, getEllipsesCenter } from './ellipse.ts'
 
 const PATH_COMMANDS_REGEX =
 	/(?:([HhVv] *-?\d*(?:\.\d+)?)|([MmLlTt](?: *-?\d*(?:\.\d+)?(?:,| *)?){2})|([Cc](?: *-?\d*(?:\.\d+)?(?:,| *)?){6})|([QqSs](?: *-?\d*(?:\.\d+)?(?:,| *)?){4})|([Aa](?: *-?\d*(?:\.\d+)?(?:,| *)?){7})|(z|Z))/g

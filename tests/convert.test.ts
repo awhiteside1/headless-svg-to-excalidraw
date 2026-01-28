@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { convert } from '../src/index.js'
+import { convert } from '../src/converter'
 
 describe('SVG to Excalidraw conversion', () => {
 	test('converts a simple circle to Excalidraw format', () => {

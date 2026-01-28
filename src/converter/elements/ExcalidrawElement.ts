@@ -4,8 +4,8 @@ import type {
 	GroupId,
 	StrokeSharpness,
 	StrokeStyle,
-} from '../types'
-import { randomId, randomInteger } from '../utils'
+} from '../types.ts'
+import { randomId, randomInteger } from '../utils.ts'
 
 export type Point = [number, number]
 

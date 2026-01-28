@@ -1,4 +1,4 @@
-import { safeNumber } from '../../../utils'
+import { safeNumber } from '../../../utils.ts'
 
 /**
  * Get a point at a given section of a cubic bezier curve.

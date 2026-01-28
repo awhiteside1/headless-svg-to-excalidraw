@@ -1,7 +1,7 @@
-import { DOMParser } from './dom'
-import ExcalidrawScene from './elements/ExcalidrawScene'
-import type Group from './elements/Group'
-import { createTreeWalker, walk } from './walker'
+import { DOMParser } from './dom.ts'
+import ExcalidrawScene from './elements/ExcalidrawScene.ts'
+import type Group from './elements/Group.ts'
+import { createTreeWalker, walk } from './walker.ts'
 
 export type ConversionResult = {
 	hasErrors: boolean

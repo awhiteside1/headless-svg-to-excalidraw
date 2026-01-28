@@ -1,3 +1,1 @@
-import { convert } from './parser'
-
-export { convert }
+export {convert} from './converter'
