@@ -52,7 +52,7 @@ jobs:
         run: bun pm pack
 
       - name: Publish to npm
-        run: NODE_AUTH_TOKEN="" npm publish --provenance *.tgz
+        run: npm publish --provenance *.tgz
 
       - name: Create GitHub Release
         env:
