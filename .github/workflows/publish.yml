@@ -5,13 +5,15 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  id-token: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
     environment: production
-    permissions:
-      contents: write
-      id-token: write
+
     if: "!startsWith(github.event.head_commit.message, 'v')"
 
     steps:
@@ -44,7 +46,7 @@ jobs:
         run: bun pm pack
 
       - name: Publish to npm
-        run: npm publish --provenance *.tgz
+        run: NODE_AUTH_TOKEN="" npm publish --provenance *.tgz
 
       - name: Create GitHub Release
         env:
