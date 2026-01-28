@@ -12,6 +12,7 @@ jobs:
     permissions:
       contents: write
       id-token: write
+    if: "!startsWith(github.event.head_commit.message, 'v')"
 
     steps:
       - uses: actions/checkout@v4
@@ -24,6 +25,9 @@ jobs:
       - name: Type check
         run: bun run typecheck
 
+      - name: Test
+        run: bun run test
+
       - name: Build
         run: bun run build
 
@@ -32,8 +36,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          bun version patch -m "Bump version to %s"
-          echo "new_version=$(bun run -s --eval "console.log(require('./package.json').version)")" >> $GITHUB_OUTPUT
+          bun pm version patch
+          echo "new_version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
           git push --follow-tags
 
       - name: Publish to npm
