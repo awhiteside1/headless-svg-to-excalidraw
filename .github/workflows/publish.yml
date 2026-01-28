@@ -41,7 +41,7 @@ jobs:
           git push --follow-tags
 
       - name: Pack with Bun
-        run: bun pack
+        run: bun pm pack
 
       - name: Publish to npm
         run: npm publish --provenance *.tgz
