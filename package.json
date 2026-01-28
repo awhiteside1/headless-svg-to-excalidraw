@@ -1,8 +1,11 @@
 {
   "name": "headless-svg-to-excalidraw",
-  "version": "0.0.2",
-  "description": "Convert SVG to Excalidraw's file format",
+  "version": "0.0.1",
+  "description": "Convert SVG to Excalidraw's file format, no browser required.",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "import": {
@@ -12,64 +15,28 @@
     }
   },
   "files": [
-   "dist",
+    "dist",
     "package.json"
   ],
   "scripts": {
     "build": "tsdown",
-    "build:analyze": "bun run clean && ANALYZE=true NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack.config.js",
-    "build:watch": "bun run clean && NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack.config.js --watch",
     "clean": "rm -rf dist",
-    "test:bundle": "node dev/test-bundle.js",
-    "fix": "bun run fix:other && bun run fix:code",
-    "fix:code": "bun run test:code -- --fix",
-    "fix:other": "bun run prettier -- --write",
-    "lint:check": "eslint .",
-    "lint:write": "eslint . --fix",
-    "prettier": "prettier \"**/*.{css,scss,json,md,html,yml}\" --ignore-path=.eslintignore",
-    "test": "bun run test:typecheck && bun run test:code && bun run test:other",
-    "test:code": "eslint --max-warnings=0 --ignore-path .gitignore --ext .js,.ts,.tsx .",
-    "test:other": "bun run prettier -- --list-different",
-    "test:typecheck": "tsc"
+    "typecheck": "tsc --noEmit"
   },
-  "prettier": "@excalidraw/prettier-config",
-  "contributors": [
-    "Nicolas Goudry <goudry.nicolas@gmail.com>",
-    "Broch Stilley <brochington@gmail.com>"
-  ],
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "7.15.5",
-    "@babel/plugin-proposal-class-properties": "7.14.5",
-    "@babel/plugin-proposal-object-rest-spread": "7.14.7",
-    "@babel/plugin-syntax-dynamic-import": "7.8.3",
-    "@babel/preset-env": "7.15.4",
-    "@babel/preset-typescript": "7.15.0",
-    "@excalidraw/eslint-config": "1.0.1",
-    "@excalidraw/prettier-config": "1.0.2",
     "@types/chroma-js": "^2.1.3",
-    "@typescript-eslint/eslint-plugin": "4.31.0",
-    "@typescript-eslint/parser": "4.31.0",
-    "babel-loader": "^8.2.2",
-    "eslint": "7.32.0",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-prettier": "4.0.0",
-    "lint-staged": "11.1.2",
-    "prettier": "2.3.2",
     "tsdown": "^0.20.1",
-    "typescript": "4.4.2",
-    "webpack": "5.52.0",
-    "webpack-cli": "4.8.0"
+    "typescript": "^5.9.3"
   },
-  "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write"
+  "peerDependencies": {
+    "typescript": "^4.5.5"
   },
   "dependencies": {
     "chroma-js": "^2.1.2",
     "gl-matrix": "^3.3.0",
     "linkedom": "^0.18.12",
-    "nanoid": "^3.1.25",
+    "nanoid": "5.0.9",
     "path-data-parser": "^0.1.0",
     "points-on-curve": "^0.2.0",
     "points-on-path": "^0.2.1",
