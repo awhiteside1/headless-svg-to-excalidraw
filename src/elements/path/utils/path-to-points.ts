@@ -1,4 +1,4 @@
-import { PathCommand } from "../../../types";
+import type { PathCommand } from "../../../types";
 import { safeNumber } from "../../../utils";
 import { curveToPoints } from "./bezier";
 import { findArc, getEllipsePoints, getEllipsesCenter } from "./ellipse";

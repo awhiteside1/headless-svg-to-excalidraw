@@ -1,6 +1,6 @@
 import { randomId, randomInteger } from "../utils";
 
-import {
+import type {
   GroupId,
   FillStyle,
   StrokeStyle,

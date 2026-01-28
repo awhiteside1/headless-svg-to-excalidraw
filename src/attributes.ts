@@ -1,5 +1,5 @@
 import chroma from "chroma-js";
-import { ExcalidrawElementBase } from "./elements/ExcalidrawElement";
+import type { ExcalidrawElementBase } from "./elements/ExcalidrawElement";
 
 export function hexWithAlpha(color: string, alpha: number): string {
   return chroma(color).alpha(alpha).css();
@@ -81,7 +81,7 @@ const attrHandlers: PresAttrHandlers = {
 export function presAttrsToElementValues(
   el: Element,
 ): Partial<ExcalidrawElementBase> {
-  const exVals = [...el.attributes].reduce((exVals, attr) => {
+  const exVals = Array.from(el.attributes).reduce((exVals, attr) => {
     const name = attr.name;
 
     if (Object.keys(attrHandlers).includes(name)) {
