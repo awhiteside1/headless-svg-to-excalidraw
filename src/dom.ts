@@ -9,8 +9,8 @@ import { parseHTML, DOMParser as LinkedDOMParser } from 'linkedom';
 const dom = parseHTML('<!DOCTYPE html>');
 
 // Export DOM APIs
-export const DOMParser = new LinkedDOMParser();
-export const document = dom.document;
+export const DOMParser: LinkedDOMParser = new LinkedDOMParser();
+export const document: Document = dom.document;
 
 // NodeFilter is available on the global/window object from linkedom
 // We need to get it from the parsed HTML window object

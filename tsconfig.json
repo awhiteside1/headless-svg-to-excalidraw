@@ -1,19 +1,13 @@
 {
+  "extends": "@tsconfig/bun/tsconfig.json",
   "compilerOptions": {
-    "sourceMap": true,
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "downlevelIteration": true,
-    "allowJs": true,
-    "noEmit": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "baseUrl": ".",
-    "paths": {},
+    "lib": ["dom", "es2020"],
+    "allowJs": false,
+    "strict": false,
+    "declaration": true,
     "isolatedDeclarations": true,
-    "skipLibCheck": true
+    "allowImportingTsExtensions": true
   },
-  "include": ["src",  "tsdown.config.ts"],
-  "exclude": ["src/test"]
+  "include": ["src", "tests"],
+  "exclude": ["tsdown.config.ts"]
 }

@@ -1,4 +1,4 @@
-import { ExcalidrawGenericElement } from "./ExcalidrawElement";
+import type { ExcalidrawGenericElement } from "./ExcalidrawElement";
 
 class ExcalidrawScene {
   type = "excalidraw";
@@ -6,7 +6,7 @@ class ExcalidrawScene {
   source = "https://excalidraw.com";
   elements: ExcalidrawGenericElement[] = [];
 
-  constructor(elements = []) {
+  constructor(elements: ExcalidrawGenericElement[] = []) {
     this.elements = elements;
   }
 

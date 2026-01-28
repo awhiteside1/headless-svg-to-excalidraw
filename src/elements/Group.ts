@@ -1,6 +1,6 @@
 import { randomId } from "../utils";
 import { presAttrsToElementValues } from "../attributes";
-import { ExcalidrawElementBase } from "../elements/ExcalidrawElement";
+import type { ExcalidrawElementBase } from "../elements/ExcalidrawElement";
 
 export function getGroupAttrs(groups: Group[]): any {
   return groups.reduce((acc, { element }) => {
@@ -11,7 +11,7 @@ export function getGroupAttrs(groups: Group[]): any {
 }
 
 class Group {
-  id = randomId();
+  id: string = randomId();
 
   element: Element;
 

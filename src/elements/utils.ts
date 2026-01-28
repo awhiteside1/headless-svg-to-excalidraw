@@ -1,4 +1,4 @@
-import { ElementBoundaries } from "../types";
+import type { ElementBoundaries } from "../types";
 
 export const getElementBoundaries = (points: number[][]): ElementBoundaries => {
   const { x, y } = points.reduce(

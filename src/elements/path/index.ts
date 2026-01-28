@@ -1,4 +1,4 @@
-import { RawElement } from "../../types";
+import type { RawElement } from "../../types";
 import { getElementBoundaries } from "../utils";
 import pathToPoints from "./utils/path-to-points";
 
